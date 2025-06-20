@@ -12,8 +12,10 @@ plugins {
     jacoco
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    `maven-publish`
 }
 
+group = "org.kwj"
 version = "1.0.0"
 
 repositories {
@@ -56,6 +58,25 @@ tasks.named<Test>("test") {
 // Configure JaCoCo
 jacoco {
     toolVersion = "0.8.12"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("kwjlib") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/WilkinsonK/kwjlib")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 tasks.jacocoTestReport {
