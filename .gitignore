@@ -3,3 +3,6 @@
 
 # Ignore Gradle build output directory
 build
+
+# Stupid OS artifacts that no one needs to track.
+.DS_Store
