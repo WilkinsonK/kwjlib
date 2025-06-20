@@ -3,6 +3,7 @@
 
 # Ignore Gradle build output directory
 build
+bin
 
 # Stupid OS artifacts that no one needs to track.
 .DS_Store
